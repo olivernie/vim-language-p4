@@ -74,18 +74,18 @@ syn keyword p4Constants P4_PARSING_DONE
 command -nargs=+ HiLink hi def link <args>
 
 HiLink p4ObjectKeyword             Type
-HiLink p4Comment		   Comment
-HiLink p4BlockComment		   Comment
-HiLink p4Preprocessor		   Macro
-HiLink p4ObjectAttributeKeyword	   Keyword
-HiLink p4MatchTypeKeyword	   Keyword
-HiLink p4CounterTypeKeyword	   Keyword
-HiLink p4DecimalInt		   Integer
-HiLink p4HexadecimalInt		   Integer
-HiLink p4Builtin		   Function
-HiLink p4Conditional		   Conditional
-HiLink p4Statement		   Statement
-HiLink p4Constants		   Constant
-HiLink p4Primitives		   Function
+HiLink p4Comment                   Comment
+HiLink p4BlockComment              Comment
+HiLink p4Preprocessor              Macro
+HiLink p4ObjectAttributeKeyword    Keyword
+HiLink p4MatchTypeKeyword          Keyword
+HiLink p4CounterTypeKeyword        Keyword
+HiLink p4DecimalInt                Integer
+HiLink p4HexadecimalInt            Integer
+HiLink p4Builtin                   Function
+HiLink p4Conditional               Conditional
+HiLink p4Statement                 Statement
+HiLink p4Constants                 Constant
+HiLink p4Primitives                Function
 
 let b:current_syntax = "p4"
