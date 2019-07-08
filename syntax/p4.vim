@@ -12,15 +12,15 @@ endif
 " Use case sensitive matching of keywords
 syn case match
 
-syn keyword p4TypeKeyword   typedef const bit void extern enum struct error match_kind
-syn keyword p4ObjectKeyword parser table state transition apply
+syn keyword p4TypeKeyword   typedef const bit int varbit void extern enum struct error match_kind
+syn keyword p4ObjectKeyword parser table state apply
 syn keyword p4ObjectKeyword header_type header action 
 syn keyword p4ObjectKeyword field_list field_list_calculation calculated_field
 syn keyword p4ObjectKeyword control package
 syn keyword p4ObjectKeyword parser_value_set
 syn keyword p4ObjectKeyword counter meter register
 
-syn keyword p4SpecialKeyword start packet_in packet_out in out inout default
+syn keyword p4SpecialKeyword start accept reject packet_in packet_out in out inout default
 
 " Tables
 syn keyword p4ObjectAttributeKeyword reads key actions default_action min_size max_size size 
@@ -28,8 +28,6 @@ syn keyword p4ObjectAttributeKeyword reads key actions default_action min_size m
 syn keyword p4ObjectAttributeKeyword fields length max_length
 " Field list calculation
 syn keyword p4ObjectAttributeKeyword input algorithm output_width
-" Calculated fields
-syn keyword p4ObjectAttributeKeyword verify update
 " Counters and meters
 syn keyword p4ObjectAttributeKeyword type direct static
 syn keyword p4ObjectAttributeKeyword instance_count min_width saturating
@@ -56,11 +54,12 @@ syn region  p4File start=/"/ end=/"/ contained
 syn match   p4Preprocessor /#.*$/ contains=p4File
 
 " @xxxx
-syn match   p4Namespace /@[a-zA-Z_]\+/
+syn match   p4Namespace /@[0-9a-zA-Z_]\+/
 syn region  p4String start=/"/ skip=/\\"/ end=/"/
 
 syn keyword p4Builtin hit miss
-syn keyword p4Builtin extract lookahead advance length emit set_metadata NoAction
+syn keyword p4Builtin update lookahead advance length emit NoAction
+syn keyword p4Builtin verify extract transition set_metadata
 syn keyword p4Builtin clone clone3 truncate assert assume
 
 syn keyword p4Primitives add_header copy_header remove_header
