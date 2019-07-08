@@ -13,7 +13,7 @@ endif
 syn case match
 
 syn keyword p4TypeKeyword   typedef const bit int varbit void extern enum struct error match_kind
-syn keyword p4ObjectKeyword parser table state apply
+syn keyword p4ObjectKeyword parser table state
 syn keyword p4ObjectKeyword header_type header action 
 syn keyword p4ObjectKeyword field_list field_list_calculation calculated_field
 syn keyword p4ObjectKeyword control package
@@ -21,6 +21,7 @@ syn keyword p4ObjectKeyword parser_value_set
 syn keyword p4ObjectKeyword counter meter register
 
 syn keyword p4SpecialKeyword start accept reject packet_in packet_out in out inout default
+syn keyword p4SpecialKeyword next last latest
 
 " Tables
 syn keyword p4ObjectAttributeKeyword reads key actions default_action min_size max_size size 
@@ -51,14 +52,17 @@ syn match   p4HexadecimalInt "\<0x\x\+\>"
 " Preproc
 syn region  p4File start=/</ end=/>/ contained
 syn region  p4File start=/"/ end=/"/ contained
-syn match   p4Preprocessor /#.*$/ contains=p4File
+syn region  p4Preprocessor start=/#\<.\+\>/ skip=/ \\$/ end=/[^\\]*$/ contains=p4File
+
+" header type or struct type
+syn match   p4TypeDefined /\<[0-9a-z_A-Z]\+_t\>/
 
 " @xxxx
 syn match   p4Namespace /@[0-9a-zA-Z_]\+/
 syn region  p4String start=/"/ skip=/\\"/ end=/"/
 
 syn keyword p4Builtin hit miss
-syn keyword p4Builtin update lookahead advance length emit NoAction
+syn keyword p4Builtin update apply lookahead advance length emit NoAction
 syn keyword p4Builtin verify extract transition set_metadata
 syn keyword p4Builtin clone clone3 truncate assert assume
 
@@ -105,5 +109,6 @@ hi def link p4String                    String
 hi def link p4Namespace                 Macro
 hi def link p4PredefinedEnumKeyword     LineNr
 hi def link p4PredefinedErrorKeyword    WarningMsg
+hi def link p4TypeDefined               MoreMsg
 
 let b:current_syntax = "p4"
